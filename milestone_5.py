@@ -17,22 +17,22 @@ class Hangman:
 
     def ask_for_input(self):
         # Ask the user to guess a letter and validate it
-        guess = input("Guess a letter: ").lower()
-        while not (guess.isalpha() and len(guess) == 1):
+        guess_letter = input("Guess a letter: ").lower()
+        while not (guess_letter.isalpha() and len(guess_letter) == 1):
             print("Invalid input. Please enter a single letter.")
-            guess = input("Guess a letter: ").lower()
-        return guess
+            guess_letter = input("Guess a letter: ").lower()
+        return guess_letter
 
-    def check_guess(self, guess):
+    def check_guess(self, guess_letter):
         # Check if the guessed letter is in the secret word
-        if guess in self.guessed_letters:
+        if guess_letter in self.guessed_letters:
             print("You already guessed that letter.")
-        elif guess in self.secret_word:
-            self.guessed_letters.append(guess)
-            print(f"Good guess! {guess} is in the word.")
+        elif guess_letter in self.secret_word:
+            self.guessed_letters.append(guess_letter)
+            print(f"Good guess! {guess_letter} is in the word.")
         else:
             self.num_lives -= 1
-            print(f"Sorry, {guess} is not in the word. Try again.")
+            print(f"Sorry, {guess_letter} is not in the word. Try again.")
         
     def is_game_won(self):
         # Check if all letters in the word have been guessed
@@ -64,8 +64,9 @@ def play_game(word_list):
         
         # Check if the guess is correct and update game state
         game.check_guess(guess)
-
-
+        
+if __name__ == "__main__":
+  
 # Word list for the game
 word_list = ["watermelon", "mango", "pomegranate", "strawberry", "pineapple"]
 
